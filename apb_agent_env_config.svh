@@ -26,7 +26,7 @@ class apb_config extends uvm_object;
 
     virtual apb_if vif;
 
-    `uvm_component_utils_begin(apb_agen)
+    `uvm_component_utils_begin(apb_agent)
       `uvm_field_object(sqr, UVM_ALL_ON)
       `uvm_field_object(drv, UVM_ALL_ON)
       `uvm_field_object(mon, UVM_ALL_ON)
@@ -41,13 +41,13 @@ class apb_config extends uvm_object;
       drv = apb_master_drv::type_id::create(this, "drv", "vif", vif);
       mon = apb_monitor::type_id::create(this, "mon", "vif", vif);
 
-      if (!uvm_config_fb#(virtual apb_if)::set(this, "", "vif", vif)) begin
+      if (!uvm_config_db#(virtual apb_if)::set(this, "", "vif", vif)) begin
         `uvm_fatal("APB", "No virtual interface found for sequencer");
       end
 
-      uvm_config_fb#(virtual apb_if)::set(this, "sqr", "vif", vif);
-      uvm_config_fb#(virtual apb_if)::set(this, "drv", "vif", vif);
-      uvm_config_fb#(virtual apb_if)::set(this, "mon", "vif", vif);
+      uvm_config_db#(virtual apb_if)::set(this, "sqr", "vif", vif);
+      uvm_config_db#(virtual apb_if)::set(this, "drv", "vif", vif);
+      uvm_config_db#(virtual apb_if)::set(this, "mon", "vif", vif);
     endfunction: build_phase
 
     //connect  - driver and sequencer together

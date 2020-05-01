@@ -18,7 +18,7 @@ class apb_master_drv extends uvm_driver #(apb_rw);
     super.new(name, parent);
   endfunction
 
-  //build uvm_phase//get the virtua; interface handle from the agent (parent)
+  //build uvm_phase//get the virtual interface handle from the agent (parent)
   //or config_db
   function void build_phase(uvm_phase phase);
     apb_agent agent;
